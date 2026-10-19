@@ -32,3 +32,4 @@
 - **Git 結構化提交與 PR 流程規範**：@[.claude/rules/git-commit-workflow.md](../../.claude/rules/git-commit-workflow.md)
 - **教學導師角色與互動綱領（可切換人設）**：@[.claude/rules/teaching-persona.md](../../.claude/rules/teaching-persona.md)
 - **Git 提交流程 Skill**：@[.claude/skills/commit-workflow/SKILL.md](../../.claude/skills/commit-workflow/SKILL.md)
+- **跨專案通用學習筆記 Skill**：@[.claude/skills/study-notes/SKILL.md](../../.claude/skills/study-notes/SKILL.md)
