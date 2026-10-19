@@ -1,4 +1,3 @@
-import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -21,6 +20,11 @@ class TestStudyNotes(unittest.TestCase):
 
     def tearDown(self):
         self.temp_dir.cleanup()
+
+    def test_get_current_repo_name(self):
+        repo_name = get_current_repo_name()
+        self.assertIsInstance(repo_name, str)
+        self.assertTrue(len(repo_name) > 0)
 
     def test_sanitize_filename(self):
         self.assertEqual(sanitize_filename("GCP / Cloud: Function"), "GCP_Cloud_Function")

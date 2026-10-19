@@ -171,7 +171,7 @@ class LocalStorageBackend(StorageBackend):
             try:
                 with open(file_path, "r", encoding="utf-8") as f:
                     content = f.read()
-                
+
                 matched = False
                 snippet = ""
                 if query_lower in note["filename"].lower():
