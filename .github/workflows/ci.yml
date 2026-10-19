@@ -30,3 +30,7 @@ jobs:
       - name: Run Pytest
         run: |
           pytest -q
+
+      - name: Run Study Notes Tests
+        run: |
+          python -m unittest discover -s .claude/skills/study-notes/scripts/tests -v
