@@ -254,8 +254,8 @@ def run_git_add(paths: Optional[List[str]] = None, exclude: Optional[List[str]] 
         if exclude:
             git(["reset", "-q", "--", *exclude], check=False)
             status = git(["status", "--porcelain"]).stdout
-            left = [l[3:] for l in status.splitlines() if l.startswith("??")
-                    and any(path_matches(l[3:], e) for e in exclude)]
+            left = [ln[3:] for ln in status.splitlines() if ln.startswith("??")
+                    and any(path_matches(ln[3:], e) for e in exclude)]
             if left:
                 print("⚠️ 排除路徑下仍有未追蹤檔案（保持未暫存）：", *left[:10], sep="\n   - ")
         return True
