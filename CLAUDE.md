@@ -15,7 +15,6 @@
   - 專屬教學模式人設，使用者提問概念、架構或原理時切換，採「先物理後邏輯、先見林後見樹」四步引導。
 - **跨專案通用學習筆記技能**：@[.claude/skills/study-notes/SKILL.md](.claude/skills/study-notes/SKILL.md)
   - 自動同步至 Google Drive `00_Claude/Agent_Study_Notes/<repo名>/<類別>_<檔名>.md`，支援本機檔案系統直連與雲端 gdrive CLI 雙模切換。
-- **跨 REPO 安全拉取、巡檢與提交前檢查技能**：@[.claude/skills/repo-manager/SKILL.md](.claude/skills/repo-manager/SKILL.md)
   - `scripts/committer.py sync` 只快轉拉取；`patrol` 巡檢實際環境與 pyproject；`check` 提交前檢查。
 
 ---
