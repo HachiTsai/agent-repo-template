@@ -23,6 +23,9 @@ import tomllib
 from pathlib import Path
 from typing import List, Optional, Sequence, Set
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import repo_health  # noqa: E402
+
 GIT_TIMEOUT_SEC = 60
 GIT_COMMIT_TIMEOUT_SEC = 300
 GIT_PUSH_TIMEOUT_SEC = 300
@@ -387,7 +390,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--allow-sensitive", action="store_true", help="略過敏感檔案檢查")
     ap.add_argument("--allow-missing-deps", action="store_true", help="略過未記錄套件與依賴檔同步檢查")
     ap.add_argument("--check-only", action="store_true", help="僅對既有暫存區執行敏感檔、依賴與規則捷徑檢查（供 pre-commit hook 使用）")
+    ap.add_argument("--sync", action="store_true", help="安全拉取：fetch 後只 fast-forward，有未提交變更或分叉時不動並回報")
+    ap.add_argument("--fetch-only", action="store_true", help="搭配 --sync：只 fetch 並回報落後，不快轉")
+    ap.add_argument("--patrol", action="store_true", help="巡檢系統工具、git 狀態、Python 版本與 pyproject 套件安裝情況")
     args = ap.parse_args(argv)
+
+    if args.sync:
+        return repo_health.print_report(repo_health.sync_repo(fetch_only=args.fetch_only))
+    if args.patrol:
+        return repo_health.print_report(repo_health.patrol_repo())
 
     if args.message_file and args.auto_quick:
         ap.error("--message-file 與 --auto-quick 互斥")
@@ -406,6 +417,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 print("❌ 暫存區含疑似敏感檔案，已中止：", *hits, sep="\n   - ", file=sys.stderr)
                 print("   確認無誤請加 --allow-sensitive；否則 `git reset HEAD -- <path>` 移出暫存。", file=sys.stderr)
                 return 1
+
+        branch_issue = repo_health.protected_branch_issue(current_branch())
+        if branch_issue and (args.message_file or args.auto_quick) and not (args.dry_run or args.no_push):
+            print(f"❌ {branch_issue}", file=sys.stderr)
+            return 1
+        rules_warning = repo_health.claude_without_rules_warning(files)
+        if rules_warning:
+            print(f"⚠️ {rules_warning}")
 
         dep_issues = [] if args.allow_missing_deps else find_dependency_issues(files)
         if dep_issues and (args.message_file or args.auto_quick or args.check_only):

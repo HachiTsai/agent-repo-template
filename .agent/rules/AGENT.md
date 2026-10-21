@@ -33,4 +33,3 @@
 - **教學導師角色與互動綱領（可切換人設）**：@[.claude/rules/teaching-persona.md](../../.claude/rules/teaching-persona.md)
 - **Git 提交流程 Skill**：@[.claude/skills/commit-workflow/SKILL.md](../../.claude/skills/commit-workflow/SKILL.md)
 - **跨專案通用學習筆記 Skill**：@[.claude/skills/study-notes/SKILL.md](../../.claude/skills/study-notes/SKILL.md)
-- **跨 REPO 安全拉取、巡檢與提交前檢查 Skill**：@[.claude/skills/repo-manager/SKILL.md](../../.claude/skills/repo-manager/SKILL.md)

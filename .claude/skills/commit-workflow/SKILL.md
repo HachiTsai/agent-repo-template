@@ -30,8 +30,11 @@ metadata:
 | `--exclude PATH...` | `git add .` 後排除指定路徑（支援 glob 與目錄前綴） |
 | `--allow-sensitive` | 略過敏感檔案檢查（`.env`、`*.pem`、`*.key`、`credentials/` 等） |
 | `--allow-missing-deps` | 略過未記錄套件與依賴檔（`pyproject.toml`／`.claude/rules/python-environment.md`）同步檢查 |
+| `--sync` | 安全拉取：`fetch --prune` 後只做 `--ff-only`；有未提交變更、與遠端分叉時不動並回報，分支已併入 `main` 或落後 `main` 時提醒；絕不 rebase／reset／force |
+| `--fetch-only` | 搭配 `--sync`：只 fetch 並回報落後，不快轉 |
+| `--patrol` | 巡檢系統工具（git、python3、uv、gh）、git 狀態、Python 版本，以及 `pyproject.toml` 直接依賴是否已安裝且版本符合；只回報，不安裝 |
 
-腳本會：拒絕 type 不在封閉清單內的標題、發現敏感檔案或未記錄套件依賴時中止、推送失敗時以 2/4/8/16 秒退避重試，並推送到當前分支。
+腳本會：拒絕 type 不在封閉清單內的標題、發現敏感檔案或未記錄套件依賴時中止、要推送時若目前在 `main` 則中止（請先建工作分支）、變更 `.claude/` 卻沒動到 rules 或索引時提醒、推送失敗時以 2/4/8/16 秒退避重試，並推送到當前分支。
 
 ## 核心原則
 
