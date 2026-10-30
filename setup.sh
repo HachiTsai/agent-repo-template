@@ -27,6 +27,7 @@ replace_vars "pyproject.toml"
 replace_vars "CLAUDE.md"
 replace_vars "README.md"
 replace_vars ".claude/rules/python-environment.md"
+replace_vars ".claude/workflows/_template-workflow.md"
 
 echo "✅ 模板變數替換完成。"
 

@@ -5,7 +5,7 @@
 
 ---
 
-## 1. 模組化規則庫索引（`.claude/rules/`）
+## 1. 模組化規則庫索引（`.claude/rules/` 與 `.claude/workflows/`）
 
 - **Python 環境與套件同步規範**：@[.claude/rules/python-environment.md](.claude/rules/python-environment.md)
   - 綁定專案虛擬環境（`{{ENV_NAME}}`），第三方依賴新增嚴格採 `uv add --active <pkg>` 雙寫同步 `pyproject.toml` 與規則檔。
@@ -16,6 +16,10 @@
 - **跨專案通用學習筆記技能**：@[.claude/skills/study-notes/SKILL.md](.claude/skills/study-notes/SKILL.md)
   - 自動同步至 Google Drive `00_Claude/Agent_Study_Notes/<repo名>/<類別>_<檔名>.md`，支援本機檔案系統直連與雲端 gdrive CLI 雙模切換。
   - `scripts/committer.py sync` 只快轉拉取；`patrol` 巡檢實際環境與 pyproject；`check` 提交前檢查。
+- **工作流與排程登記總表**：@[.claude/workflows/workflow-registry.md](.claude/workflows/workflow-registry.md)
+  - 專案所有 Schedule、Task 與 Automation 的 SSOT 登記表，支援跨 Agent 單行調用協議。
+- **工作流執行範本**：@[.claude/workflows/_template-workflow.md](.claude/workflows/_template-workflow.md)
+  - 標準 SOP 撰寫範本，含前置環境約束、Mermaid 流程、Gatekeeper 品質門禁與極簡回報。
 
 ---
 
@@ -25,7 +29,7 @@
 
 | 目錄／資源 | 權限 | 說明 |
 | :--- | :---: | :--- |
-| `.claude/` | 讀寫 | 專案唯一技能引擎（`skills/`）與規則庫（`rules/`）。 |
+| `.claude/` | 讀寫 | 專案唯一技能引擎（`skills/`）、規則庫（`rules/`）與工作流（`workflows/`）。 |
 | `CLAUDE.md` / `.agent/` | 需授權 | 治理核心檔案，修改必須明確向使用者揭露並取得同意。 |
 | 專案業務程式碼與文件 | 讀寫 | 依專案需求自由讀寫與維護。 |
 
@@ -82,4 +86,8 @@ gh pr status && gh pr merge <PR_NUMBER> --merge --delete-branch
 python .claude/skills/study-notes/scripts/note.py add --category "GCP" --title "Note_Title" --tags "tag1,tag2" --content "## 核心摘要\n..."
 python .claude/skills/study-notes/scripts/note.py search "Keyword"
 python .claude/skills/study-notes/scripts/note.py list
+
+# 6. 標準工作流呼叫（跨 Agent 單行調用指針）
+# 不管在哪個 Agent（Claude/Antigravity）或雲端排程，均直接呼叫：
+# git pull --ff-only origin main，讀取並執行 .claude/workflows/<workflow-name>.md，完成後依規格回報。
 ```
