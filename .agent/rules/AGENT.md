@@ -10,6 +10,7 @@
    - 專案憲法與核心執行規範統一載於根目錄 [`CLAUDE.md`](../../CLAUDE.md)。
    - 模組化通用規則與人設統一存放於 `.claude/rules/*.md`。
    - 技能與自動化腳本統一存放於 `.claude/skills/`。
+   - 工作流與排程標準作業程序（SOP）統一存放於 `.claude/workflows/`。
 
 2. **統一工程協作權限 + 可切換教學導師角色**：
    - **工程協作模式（預設執行模式）**：Antigravity 與 Claude Code 享有完全對等的全專案讀寫、技能維護與 Git 提交權限。
@@ -33,3 +34,5 @@
 - **教學導師角色與互動綱領（可切換人設）**：@[.claude/rules/teaching-persona.md](../../.claude/rules/teaching-persona.md)
 - **Git 提交流程 Skill**：@[.claude/skills/commit-workflow/SKILL.md](../../.claude/skills/commit-workflow/SKILL.md)
 - **跨專案通用學習筆記 Skill**：@[.claude/skills/study-notes/SKILL.md](../../.claude/skills/study-notes/SKILL.md)
+- **工作流與排程登記總表**：@[.claude/workflows/workflow-registry.md](../../.claude/workflows/workflow-registry.md)
+- **工作流執行範本**：@[.claude/workflows/_template-workflow.md](../../.claude/workflows/_template-workflow.md)

@@ -69,6 +69,13 @@ git-new MyProject --public
 ### 3. 若為純文件 / 知識庫 / Go / Rust 等專案
 - 同理只需依專案語言調整 `.github/workflows/ci.yml` 中的測試指令即可，其餘所有的雙 Agent 協作（`.agent/`、`CLAUDE.md`、`teaching-persona.md`）都能完全通用！
 
+### 4. 跨 Agent 工作流調用協議（One-Line Dispatch Protocol）
+不論在 Claude Code、Antigravity 或是雲端定時排程，均以極簡單行指向 `.claude/workflows/` 執行：
+```text
+git pull --ff-only origin main，讀取並執行 .claude/workflows/<workflow-name>.md，完成後依規格回報。
+```
+所有前置檢查、執行步驟與 Gatekeeper 品質門禁完全收斂於 Git 版本庫中，杜絕多 Agent 資訊與提示詞漂移。
+
 ---
 
 ## 🧠 內建核心資產
@@ -78,6 +85,8 @@ git-new MyProject --public
   - `.claude/rules/python-environment.md`：`uv add --active` 依賴同步規範。
   - `.claude/rules/teaching-persona.md`：隨時可切換的「資深教學導師（Senior Mentor）」角色人設。
   - `.claude/skills/commit-workflow/`：安全攔截防呆與結構化提交工具。
+  - `.claude/skills/study-notes/`：跨專案學習筆記與 Google Drive 雙模同步工具。
+  - `.claude/workflows/`：跨 Agent 標準作業程序（SOP）與排程總表，支援單行調用指針（Schedule / Task / Automation）。
 - **`.agent/rules/AGENT.md`**：Antigravity 入口指針。
 - **`CLAUDE.md`**：精簡現代工程協作主規範。
 - **`.github/workflows/ci.yml`**：自動化 CI 門禁。
