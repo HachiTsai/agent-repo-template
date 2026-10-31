@@ -64,7 +64,7 @@
    - **可自主提交**：工作收斂且通過品質閘門、無刪除檔案、不涉及治理核心、一律使用 `committer.py`。
    - **紅線必須先問**：涉及治理核心（`CLAUDE.md`、`.agent/`、`.claude/rules/`、`committer.py`、`settings.json`）、任何刪除、`reset` / `rebase` / `push --force`。
 2. **提交工具**：一律使用 `committer.py`（自動檢查敏感檔、AST 依賴同步）。
-3. **PR 與 CI**：在 Feature Branch 提交後推送，透過 GitHub CLI 建立 PR，待 GitHub Actions CI 全綠後採 `--merge` 合併回 `main`。
+3. **PR 與 CI**：在 Feature Branch 提交後推送，透過 GitHub CLI 建立 PR，待 GitHub Actions CI 全綠後採 `--merge` 合併回 `main`。PR 若改到 `.claude/`、`CLAUDE.md` 或 `.agent/rules/AGENT.md`，描述須含「規則掃描」段落，CI 的 `rule-scan` 會檢查。
 4. **告知義務**：自主提交完成後，必須在回覆中附上 Commit Hash 與一句摘要。
 
 ---
