@@ -68,3 +68,4 @@
 ## 5. 異動紀錄
 
 - `2026-10-30`：初始化工作流登記總表，導入雙 Agent 單行調用協議。
+- `2026-10-31`：新增工作流可視化標準 [`_visualization-standard.md`](_visualization-standard.md) 與起手範本 [`_diagram-starter.md`](_diagram-starter.md)。

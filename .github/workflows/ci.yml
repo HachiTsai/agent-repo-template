@@ -34,3 +34,24 @@ jobs:
       - name: Run Study Notes Tests
         run: |
           python -m unittest discover -s .claude/skills/study-notes/scripts/tests -v
+
+  auto-merge:
+    needs: lint-and-tests
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (startsWith(github.head_ref, 'claude/') || startsWith(github.head_ref, 'agy/'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ secrets.AUTO_MERGE_PAT || secrets.GITHUB_TOKEN }}
+      PR_URL: ${{ github.event.pull_request.html_url }}
+    steps:
+      - name: Mark PR ready for review
+        if: github.event.pull_request.draft == true
+        run: gh pr ready "$PR_URL"
+
+      - name: Merge with merge commit
+        run: gh pr merge "$PR_URL" --merge --delete-branch

@@ -36,3 +36,4 @@
 - **跨專案通用學習筆記 Skill**：@[.claude/skills/study-notes/SKILL.md](../../.claude/skills/study-notes/SKILL.md)
 - **工作流與排程登記總表**：@[.claude/workflows/workflow-registry.md](../../.claude/workflows/workflow-registry.md)
 - **工作流執行範本**：@[.claude/workflows/_template-workflow.md](../../.claude/workflows/_template-workflow.md)
+- **工作流可視化標準**：@[.claude/workflows/_visualization-standard.md](../../.claude/workflows/_visualization-standard.md)

@@ -19,6 +19,8 @@
 - **工作流與排程登記總表**：@[.claude/workflows/workflow-registry.md](.claude/workflows/workflow-registry.md)
   - 專案所有 Schedule、Task 與 Automation 的 SSOT 登記表，支援跨 Agent 單行調用協議。
 - **工作流執行範本**：@[.claude/workflows/_template-workflow.md](.claude/workflows/_template-workflow.md)
+- **工作流可視化標準**：@[.claude/workflows/_visualization-standard.md](.claude/workflows/_visualization-standard.md)
+  - 每份工作流須含 8 個固定區段與 Mermaid 執行順序圖，起手範本見 `.claude/workflows/_diagram-starter.md`。
   - 標準 SOP 撰寫範本，含前置環境約束、Mermaid 流程、Gatekeeper 品質門禁與極簡回報。
 
 ---
