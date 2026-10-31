@@ -2,6 +2,8 @@
 
 本工作流為 `{{PROJECT_NAME}}` 之標準作業程序（SOP），規格收斂於 Git REPO 作為單一真實來源（SSOT）。任何 Agent（Claude Code、Antigravity）或自動化平台均直接指向本文件執行，確保跨介面邏輯完全同步。
 
+> 📐 **可視化標準**：本檔的概覽、技能、讀寫、Gate 與執行順序圖須依 [`_visualization-standard.md`](_visualization-standard.md) 撰寫，起手可複製 [`_diagram-starter.md`](_diagram-starter.md)。
+
 ---
 
 ## 1. 觸發時機與模式
