@@ -63,6 +63,30 @@
 - [ ] Secrets 區段只有名稱，沒有值。
 - [ ] `workflow-registry.md` 的對應列與工作流檔案的觸發時機一致。
 
-## 6. 變更紀錄
+## 6. 範例
+
+以下是依本標準寫成的一個最小範例（數值與名稱為虛構，不含任何 ID 或金鑰）。
+
+```mermaid
+sequenceDiagram
+  autonumber
+  box LightSkyBlue GitHub Actions
+    participant GH as GitHub cron
+  end
+  box Gainsboro 外部
+    participant SRC as 行情 API
+    participant SH as 範例 Sheet
+  end
+  GH->>SRC: 抓取當日資料
+  SRC-->>GH: 回傳筆數與欄位
+  alt 筆數 ≥ 100
+    GH->>SH: 覆寫資料分頁
+    GH-->>GH: 回報成功
+  else 筆數不足
+    GH-->>GH: 中止，保留舊值
+  end
+```
+
+## 7. 變更紀錄
 
 - `2026-10-31`：初版。依 Investment_Tracker 工作流儀表板的版面，抽出固定區段、平台配色與 Mermaid 執行順序圖的規則。

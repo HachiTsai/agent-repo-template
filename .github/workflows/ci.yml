@@ -35,8 +35,32 @@ jobs:
         run: |
           python -m unittest discover -s .claude/skills/study-notes/scripts/tests -v
 
+  rule-scan:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Require 規則掃描 section when governance files change
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          if printf '%s\n' "$changed" | grep -Eq '^(\.claude/|CLAUDE\.md$|\.agent/rules/AGENT\.md$)'; then
+            if ! printf '%s' "$PR_BODY" | grep -q '規則掃描'; then
+              echo "::error::PR 改到 .claude/、CLAUDE.md 或 .agent/rules/AGENT.md，但描述缺少「規則掃描」段落"
+              exit 1
+            fi
+          fi
+          echo "規則掃描檢查通過"
+
   auto-merge:
-    needs: lint-and-tests
+    needs: [lint-and-tests, rule-scan]
     if: >-
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&

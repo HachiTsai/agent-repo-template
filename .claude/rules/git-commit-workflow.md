@@ -7,6 +7,7 @@
 1. **先開 PR 再合併 `main`**：
    - 所有變更（功能開發、重構、工具、文件與規範）都在指定的分支上 commit 並推送，向 `main` 發起 Pull Request。
    - PR 的 GitHub Actions CI（`lint-and-tests`：`ruff check` 與 `pytest`）全綠後才可合併。
+   - PR 若改到 `.claude/`、`CLAUDE.md` 或 `.agent/rules/AGENT.md`，描述必須含「規則掃描」段落（掃了哪些檔、結論、使用者同意的訊息位置）；CI 的 `rule-scan` 會檢查，缺少即失敗。
    - **禁止直接 push 到 `main` 分支**。
 2. **合併方式一律採用 Merge Commit**：
    - 不使用 squash、不使用 rebase，保留分支上每個 commit 的完整訊息與歷程。
