@@ -39,3 +39,18 @@
 - **工作流可視化標準**：@[.claude/workflows/_visualization-standard.md](../../.claude/workflows/_visualization-standard.md)
 - **工作流工廠 Skill**：@[.claude/skills/workflow-factory/SKILL.md](../../.claude/skills/workflow-factory/SKILL.md)
 - **工作流工廠更新排程**：@[.claude/workflows/workflow-factory.md](../../.claude/workflows/workflow-factory.md)
+
+---
+
+## 3. 與 Claude 協作（Antigravity 與 Claude 雙 Agent 守則）
+
+Antigravity（本機）與 Claude（雲端或本機）對等協作，兩邊看不到彼此的對話與記憶，**約定一律寫進 repo 或 GitHub Issue，不靠口頭轉述**。
+
+1. **分支命名**：Antigravity 一律用 `agy/<task-name>`，Claude 一律用 `claude/<task-name>`；兩邊都不直接 push 到 `main`，一律 PR、CI 全綠後以 Merge Commit 合併。
+2. **開工先同步**：先執行 `python .claude/skills/commit-workflow/scripts/committer.py --sync`（只 fast-forward），再讀最近 5 筆 Commit 的 `Session-Sync`，了解對方留下的狀態與下一步。
+3. **Session-Sync 交接**：額度用盡或工作未完成時，提交到自己的分支，並在 Commit 的 `Session-Sync` 區塊寫清楚「狀態、下一步、阻塞」，讓對方能直接接手。
+4. **動工前討論走 GitHub Issue**：每個議題開一個 Issue 當共用討論板，留言開頭標「Claude：」或「agy：」。不在 PR 底下討論（CI 綠燈後可能立即合併，來不及審），不為討論另寫 repo 草稿檔。使用者拍板後，由執行方把結論留言到 Issue、開 PR 實作，合併後關閉 Issue。推送與留言不會叫醒對方，由使用者轉知「看 #N」。
+5. **治理核心先揭露**：修改 `CLAUDE.md`、`.agent/`、`.claude/rules/`、`committer.py`、`settings.json` 前，先向使用者揭露並取得同意；PR 描述加「規則掃描」段落（CI 的 `rule-scan` 會檢查）。
+6. **含個資或機密的共享檔案不進 repo**：放在使用者指定的雲端共享資料夾（例如 Drive 的「Claude_agy_共享」），Issue 只寫檔名，不貼內容。非個資的約定一律寫進 repo。
+7. **只有一方看得到的資訊要落地**：雲端排程結果、專案記憶中的決定、本機回測結果等，若對方需要，寫成 repo 文件或 Issue 留言；已決定不做的事要記下「為什麼」與「什麼條件下回頭」，避免對方重提。
+8. **工作流與排程**：新增或調整排程時，同步更新 [`workflow-registry.md`](../../.claude/workflows/workflow-registry.md) 與工廠資料檔（見 [`_visualization-standard.md`](../../.claude/workflows/_visualization-standard.md) §7）；外部排程只用單行呼叫 prompt。
