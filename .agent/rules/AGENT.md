@@ -54,3 +54,4 @@ Antigravity（本機）與 Claude（雲端或本機）對等協作，兩邊看�
 6. **含個資或機密的共享檔案不進 repo**：放在使用者指定的雲端共享資料夾（例如 Drive 的「Claude_agy_共享」），Issue 只寫檔名，不貼內容。非個資的約定一律寫進 repo。
 7. **只有一方看得到的資訊要落地**：雲端排程結果、專案記憶中的決定、本機回測結果等，若對方需要，寫成 repo 文件或 Issue 留言；已決定不做的事要記下「為什麼」與「什麼條件下回頭」，避免對方重提。
 8. **工作流與排程**：新增或調整排程時，同步更新 [`workflow-registry.md`](../../.claude/workflows/workflow-registry.md) 與工廠資料檔（見 [`_visualization-standard.md`](../../.claude/workflows/_visualization-standard.md) §7）；外部排程只用單行呼叫 prompt。
+9. **Google Drive 私人資料夾不進入**：讀取使用者的 Google Drive（含本機同步目錄）時，遇到標記為「private」的資料夾（名稱或說明含 private）一律不進入、不展開、不讀取其內容；無法判斷是否為私人時，先詢問使用者。此規則適用於 Antigravity 的本機掃描，以及 Claude 的 Drive 輪詢與搜尋。
