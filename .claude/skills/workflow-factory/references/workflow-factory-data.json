@@ -1,0 +1,77 @@
+{
+ "META": {
+  "title": "工作流工廠"
+ },
+ "SK": [
+  [
+   "commit-workflow",
+   "#7DD3FC",
+   "提交流程"
+  ],
+  [
+   "study-notes",
+   "#FDE68A",
+   "學習筆記"
+  ],
+  [
+   "workflow-factory",
+   "#5EEAD4",
+   "工廠頁"
+  ]
+ ],
+ "OUT": [
+  [
+   "Artifact 報告",
+   "#FF8A3D"
+  ],
+  [
+   "PR 變更摘要",
+   "#2F6BFF"
+  ],
+  [
+   "Sheet 資料表",
+   "#1FA97A"
+  ],
+  [
+   "Artifact 工作流工廠",
+   "#FF8A3D"
+  ]
+ ],
+ "ROWS": [
+  "S1",
+  "T1",
+  "A1",
+  "S2"
+ ],
+ "OUTS": {
+  "S1": [
+   "Artifact 報告"
+  ],
+  "T1": [
+   "PR 變更摘要"
+  ],
+  "A1": [],
+  "S2": [
+   "Artifact 工作流工廠"
+  ]
+ },
+ "OVR": {
+  "T1": {
+   "skills": [
+    "commit-workflow"
+   ],
+   "also": []
+  },
+  "A1": {
+   "cap": "（只在 PR 內留評論，沒有獨立產出）"
+  },
+  "S1": {
+   "skills": [
+    "study-notes"
+   ],
+   "also": [
+    "commit-workflow"
+   ]
+  }
+ }
+}

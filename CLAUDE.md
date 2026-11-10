@@ -22,6 +22,8 @@
 - **工作流可視化標準**：@[.claude/workflows/_visualization-standard.md](.claude/workflows/_visualization-standard.md)
   - 每份工作流須含 8 個固定區段與 Mermaid 執行順序圖，起手範本見 `.claude/workflows/_diagram-starter.md`。
   - 標準 SOP 撰寫範本，含前置環境約束、Mermaid 流程、Gatekeeper 品質門禁與極簡回報。
+- **工作流工廠技能**：@[.claude/skills/workflow-factory/SKILL.md](.claude/skills/workflow-factory/SKILL.md)
+  - 由登記表、規格檔與技能清單產生工廠模擬頁並回報 drift；排程規格見 @[.claude/workflows/workflow-factory.md](.claude/workflows/workflow-factory.md)，版面規則見可視化標準 §7（工廠模擬頁）。
 
 ---
 

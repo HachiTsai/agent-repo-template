@@ -87,6 +87,31 @@ sequenceDiagram
   end
 ```
 
-## 7. 變更紀錄
+## 7. 工廠模擬頁（選用）
+
+專案想要一張總覽圖時，可用 `workflow-factory` 技能（`.claude/skills/workflow-factory/`）把全部工作流畫成「工廠平面圖」：觸發（進料口）→ 技能（機台）→ 產出（倉庫）。它是第 2 節 8 個區段的**衍生品**，不取代各工作流檔內的圖表。
+
+**資料來源與自動對齊**
+
+- 流程 ID、名稱、平台、觸發時機取自 `workflow-registry.md`；主責 `●` 與被引用 `○` 的技能取自各規格檔「技能與腳本」區段。因此第 2 節的區段 1、3 寫得越規矩，工廠頁越不需要人工維護。
+- 機台顏色與簡稱、倉庫清單、產出路線等 repo 內沒有結構化來源的資訊，放在 `references/workflow-factory-data.json`（策展層），與登記表在同一個 PR 更新。
+- 工廠資料與 repo 不一致時，產生器列在 `drift`，**只回報、不自行改資料檔**。`--strict` 可在 CI 或本機把 drift 當成失敗。
+
+**版面規則**
+
+- 觸發欄固定三種平台：GitHub 排程（藍）、Claude 排程（橘）、手動與會話（紫），與第 3 節的 `box` 配色一致。
+- 機台上限 9 台（3×3），倉庫上限 15 個；超過時拆分技能或合併倉庫，不縮小字級。
+- 沒有登記技能的流程（人工作業、純 CI）在頁面上以「未登記技能」呈現，仍可點選。
+- 頁面只放名稱，不放金鑰、試算表或 Drive ID、個人資料；Artifact 網址寫在工作流規格，不寫進頁面。
+- 想看範例與排程規格：[`workflow-factory.md`](workflow-factory.md)。
+
+**新增工作流時的檢查**
+
+- [ ] 登記表新增一列，規格檔含「技能與腳本」區段。
+- [ ] `workflow-factory-data.json` 的 `ROWS`、`OUTS` 已補上；新技能已加進 `SK`，新產出已加進 `OUT`。
+- [ ] `workflow_factory.py build factory.html --strict` 的 `drift` 為空。
+
+## 8. 變更紀錄
 
 - `2026-10-31`：初版。依 Investment_Tracker 工作流儀表板的版面，抽出固定區段、平台配色與 Mermaid 執行順序圖的規則。
+- `2026-11-10`：新增第 7 節「工廠模擬頁」。依 Investment_Tracker 的工作流工廠（資料檔＋模板＋產生器、drift 回報、每日重產）抽出通用規則；專案專屬的機台、倉庫、流程路線與 Artifact 網址留在各專案資料檔。
