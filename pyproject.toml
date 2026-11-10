@@ -10,7 +10,11 @@ dependencies = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = [".claude/skills/commit-workflow/scripts/tests", "tests"]
+testpaths = [
+    ".claude/skills/commit-workflow/scripts/tests",
+    ".claude/skills/workflow-factory/scripts/tests",
+    "tests",
+]
 python_files = ["test_*.py"]
 
 [tool.ruff]

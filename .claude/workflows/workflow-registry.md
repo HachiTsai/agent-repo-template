@@ -26,6 +26,7 @@
 | `S1` | 每日健康檢查巡檢 (範例) | Schedule | GitHub Actions / 雲端排程 | 平日 09:00 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | 巡檢報告 / Slack 通知 | 失敗門檻判定 |
 | `T1` | 依賴升級與環境驗證 (範例) | Task | 本地 CLI / Agent 對話 | 依需求手動觸發 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | PR 變更摘要 | 測試全數通過 |
 | `A1` | 新 PR 自動語法與安全審查 (範例) | Automation | Webhook / CI 事件 | PR 開立時觸發 | [`.claude/workflows/_template-workflow.md`](_template-workflow.md) | PR 內嵌審查評論 | CI Quality Gate |
+| `S2` | 工作流工廠更新 | Schedule | Claude 雲端 | 每日 23:10 | [`.claude/workflows/workflow-factory.md`](workflow-factory.md) | 工作流工廠 Artifact（原地更新） | 退出碼與流程數；drift 只回報 |
 
 > 💡 **類型說明**：
 > - `Schedule`：週期性定時執行（例如 Cron 每天/每週觸發）。
@@ -69,3 +70,4 @@
 
 - `2026-10-30`：初始化工作流登記總表，導入雙 Agent 單行調用協議。
 - `2026-10-31`：新增工作流可視化標準 [`_visualization-standard.md`](_visualization-standard.md) 與起手範本 [`_diagram-starter.md`](_diagram-starter.md)。
+- `2026-11-10`：新增 `S2` 工作流工廠更新與 `workflow-factory` 技能；登記表新增流程時，須同步更新工廠資料檔（見 [`_visualization-standard.md`](_visualization-standard.md) §7）。
